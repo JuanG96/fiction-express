@@ -56,7 +56,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ffeb3b;
 `;
 
 const Card = styled.div`

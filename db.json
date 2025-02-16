@@ -1,0 +1,73 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "fiction",
+      "pass": "express"
+    },
+    {
+      "id": "2",
+      "username": "juan",
+      "pass": "gianina"
+    }
+  ],
+  "books": [
+    {
+      "id": "1",
+      "title": "Las aventuras de Juan",
+      "author": "Autor Ficticio",
+      "pages": [
+        "Capítulo 1: Había una vez en un lugar muy lejano... Capítulo 1: Había una vez en un lugar muy lejano...",
+        "Capítulo 2: Continuaron las aventuras de Juan...",
+        "Capítulo 3: El final de la historia se acercaba.."
+      ],
+      "description": "Descripción del libro"
+    },
+    {
+      "id": "2",
+      "title": "El viaje de la imaginación",
+      "author": "Escritor Desconocido",
+      "pages": [
+        "Capítulo 1: La imaginación puede llevarte a lugares increíbles...",
+        "Capítulo 2: A medida que el viaje continuaba, las posibilidades parecían infinitas...",
+        "Capítulo 3: El fin de la aventura"
+      ],
+      "description": "Descripción del libro"
+    },
+    {
+      "id": "3",
+      "title": "Las aventuras de Juan",
+      "author": "Autor Ficticio",
+      "pages": [
+        "Capítulo 1: Había una vez en un lugar muy lejano...Capítulo 1: Había una vez en un lugar muy lejano...",
+        "Capítulo 2: Continuaron las aventuras de Juan...",
+        "Capítulo 3: El final de la historia se acercaba.."
+      ],
+      "description": "Descripción del libro"
+    },
+    {
+      "id": "4",
+      "title": "El viaje de la imaginación",
+      "author": "Escritor Desconocido",
+      "pages": [
+        "Capítulo 1: La imaginación puede llevarte a lugares increíbles...",
+        "Capítulo 2: A medida que el viaje continuaba, las posibilidades parecían infinitas...",
+        "Capítulo 3: El fin de la aventura"
+      ],
+      "description": "Descripción del libro"
+    },
+    {
+      "id": "4",
+      "title": "El viaje de la imaginación",
+      "author": "Escritor Desconocido",
+      "pages": [
+        "Capítulo 1: La imaginación puede llevarte a lugares increíbles...",
+        "Capítulo 2: A medida que el viaje continuaba, las posibilidades parecían infinitas...",
+        "Capítulo 3: El fin de la aventura"
+      ],
+      "description": "Descripción del libro"
+    }
+  ],
+  "metrics": [
+  ]
+}

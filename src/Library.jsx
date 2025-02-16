@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BookImage from "./assets/principito.jpg";
+import BookImage from "./assets/book.jpg";
 import BookModal from "./components/BookModal";
+import CustomText from "./components/CustomText";
 
 const Library = () => {
   const [books, setBooks] = useState([]);
@@ -24,7 +25,7 @@ const Library = () => {
 
   return (
     <Container>
-      <Title>📚 Biblioteca</Title>
+      <CustomText tag="h1">📚 Biblioteca</CustomText>
       <BookList>
         {books.map((book) => (
           <BookItem key={book.id} onClick={() => handleBookClick(book)}>
@@ -37,12 +38,8 @@ const Library = () => {
         ))}
       </BookList>
 
-      {/* MODAL */}
       {selectedBook && (
-        <BookModal
-          selectedBook={selectedBook}
-          closeModal={closeModal}
-        ></BookModal>
+        <BookModal selectedBook={selectedBook} closeModal={closeModal} />
       )}
     </Container>
   );
@@ -51,29 +48,40 @@ const Library = () => {
 export default Library;
 
 const Container = styled.div`
-  max-width: 600px;
-  margin: 40px auto;
+  margin: 3rem auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const Title = styled.h1`
-  color: #ff5722;
-  font-size: 28px;
-`;
-
-const BookList = styled.ul`
-  list-style: none;
+const BookList = styled.div`
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
   padding: 0;
+  margin-top: 2rem;
+  box-sizing: border-box;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-const BookItem = styled.li`
+const BookItem = styled.div`
   background: #fff;
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
   text-align: center;
-  overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s;
 

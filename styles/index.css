@@ -2,15 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
 }
 
 body {
-  background-color: #ffeb3b;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: url('../src//assets//background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 button {

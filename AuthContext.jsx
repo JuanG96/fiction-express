@@ -1,31 +1,42 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("loggedUser");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-  useEffect(() => {
-    const auth = localStorage.getItem("isAuthenticated");
-    setIsAuthenticated(auth === "true");
-  }, []);
-
-  const login = (username, password) => {
-    if (username === "fiction" && password === "express") {
-      setIsAuthenticated(true);
-      localStorage.setItem("isAuthenticated", "true");
-      return true;
+  const login = async (username, password) => {
+    try {
+      const response = await fetch(
+        `http://localhost:4444/users?username=${encodeURIComponent(username)}&pass=${encodeURIComponent(password)}`
+      );
+      const data = await response.json();
+      console.log({data})
+      
+      if (data && data.length > 0) {
+        const loggedUser = data[0];
+        setUser(loggedUser);
+        localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.error("Error durante el login:", error);
+      return false;
     }
-    return false;
   };
 
   const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated");
+    setUser(null);
+    localStorage.removeItem("loggedUser");
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
