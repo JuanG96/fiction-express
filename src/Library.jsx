@@ -4,12 +4,13 @@ import BookImage from "./assets/book.jpg";
 import BookModal from "./components/BookModal";
 import CustomText from "./components/CustomText";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Library = () => {
   const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
-
   useEffect(() => {
-    fetch("http://localhost:4444/books")
+    fetch(`${API_URL}/books`)
       .then((response) => response.json())
       .then((data) => setBooks(data))
       .catch((error) => console.error("Error fetching books:", error));
@@ -76,7 +77,7 @@ const BookList = styled.div`
 `;
 
 const BookItem = styled.div`
-  background: #fff;
+  background: rgba(255, 255, 255, 1);
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
@@ -103,11 +104,11 @@ const BookInfo = styled.div`
 
 const BookTitle = styled.h3`
   margin: 0;
-  color: #4caf50;
+  color: rgba(76, 175, 79, 1);
 `;
 
 const BookAuthor = styled.p`
   margin: 5px 0;
   font-size: 16px;
-  color: #333;
+  color: rgba(51, 51, 51, 1);
 `;

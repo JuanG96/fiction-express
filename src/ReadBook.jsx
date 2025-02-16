@@ -22,7 +22,7 @@ const ReadBook = () => {
     <Container>
       <Header>
         <BackButton onClick={handleBack}>Volver</BackButton>
-        <CustomText tag="h1" color="#ff5722">
+        <CustomText tag="h1" color="rgba(255, 87, 34, 1)">
           {bookTitle}
         </CustomText>
       </Header>
@@ -62,8 +62,8 @@ const BackButton = styled.button`
   left: 0;
   font-size: 16px;
   padding: 8px 12px;
-  background: #4caf50;
-  color: #fff;
+  background: rgba(76, 175, 80, 1);
+  color: rgba(255, 255, 255, 1);
   border: none;
   border-radius: 4px;
   cursor: pointer;

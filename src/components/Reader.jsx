@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { AuthContext } from "../../AuthContext";
+import { fetchBook } from "../api/fetchBook";
+import { postMetrics } from "../api/postMetrics";
 import CustomText from "./CustomText";
 
 const Reader = ({ onFinishReading, onBookTitle }) => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
+
   const [book, setBook] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -15,21 +20,17 @@ const Reader = ({ onFinishReading, onBookTitle }) => {
   const [pageTimes, setPageTimes] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4444/books/${id}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Error al obtener el libro");
-        }
-        return res.json();
-      })
-      .then((data) => {
+    const loadBook = async () => {
+      try {
+        const data = await fetchBook(id);
         setBook(data);
         setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         setError(err.message);
         setLoading(false);
-      });
+      }
+    };
+    loadBook();
   }, [id]);
 
   useEffect(() => {
@@ -79,20 +80,14 @@ const Reader = ({ onFinishReading, onBookTitle }) => {
 
     const metrics = {
       bookId: book.id,
+      userId: user.id,
       totalTime,
       averageTime,
       pageTimes: updatedPageTimes,
     };
 
     try {
-      const response = await fetch("http://localhost:4444/metrics", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(metrics),
-      });
-      if (!response.ok) {
-        throw new Error("Error al guardar las métricas");
-      }
+      await postMetrics(metrics);
     } catch (err) {
       console.error("Error saving metrics:", err);
     }
@@ -102,21 +97,21 @@ const Reader = ({ onFinishReading, onBookTitle }) => {
 
   if (loading) {
     return (
-      <CustomText tag="h1" color="#ff5722">
+      <CustomText tag="h1" color="rgba(255, 87, 34, 1)">
         Cargando libro...
       </CustomText>
     );
   }
   if (error) {
     return (
-      <CustomText tag="h1" color="#ff5722">
+      <CustomText tag="h1" color="rgba(255, 87, 34, 1)">
         {error}
       </CustomText>
     );
   }
   if (!book || !book.pages || book.pages.length === 0) {
     return (
-      <CustomText tag="h1" color="#ff5722">
+      <CustomText tag="h1" color="rgba(255, 87, 34, 1)">
         El libro no tiene contenido disponible.
       </CustomText>
     );
@@ -174,13 +169,11 @@ const ReaderContent = styled.div`
   margin-bottom: 2rem;
   overflow-y: auto;
   overflow-x: hidden;
-
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: rgba(249, 249, 249);
   border: 1px solid #ddd;
   border-radius: 8px;
   text-align: left;
-
   font-size: 18px;
   line-height: 1.6;
   white-space: normal;
@@ -195,7 +188,6 @@ const ReaderContent = styled.div`
 const ReaderNavigation = styled.div`
   width: 100%;
   max-width: 800px;
-
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -209,14 +201,14 @@ const ReaderNavigation = styled.div`
 const NavButton = styled.button`
   font-size: 18px;
   padding: 10px 20px;
-  background: #4caf50;
-  color: #fff;
+  background: rgba(76, 175, 79);
+  color: rgba(255, 255, 255);
   border: none;
   border-radius: 8px;
   cursor: pointer;
 
   &:disabled {
-    background: #aaa;
+    background: rgba(170, 170, 170);
     cursor: not-allowed;
   }
 `;

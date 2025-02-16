@@ -59,7 +59,7 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
-  background: #fff;
+  background: rgba(255, 255, 255, 1);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
@@ -68,7 +68,7 @@ const Card = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #ff5722;
+  color: rgba(255, 86, 34, 1);
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
@@ -78,11 +78,11 @@ const Input = styled.input`
   width: 100%;
   padding: 10px;
   margin: 8px 0;
-  border: 2px solid #ddd;
+  border: 2px solid rgba(221, 221, 221, 1);
   border-radius: 5px;
   font-size: 16px;
   &:focus {
-    border-color: #ff5722;
+    border-color: rgba(255, 86, 34, 1);
     outline: none;
   }
 `;
@@ -90,20 +90,20 @@ const Input = styled.input`
 const Button = styled.button`
   width: 100%;
   padding: 10px;
-  background: #4caf50;
-  color: white;
+  background: rgba(76, 175, 80, 1);
+  color: rgba(255, 255, 255, 1);
   border: none;
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
   margin-top: 15px;
   &:hover {
-    background: #388e3c;
+    background: rgba(56, 142, 60, 1);
   }
 `;
 
 const ErrorText = styled.p`
-  color: red;
+  color: rgba(255, 0, 0, 1);
   font-size: 14px;
   margin: 5px 0;
 `;

@@ -1,5 +1,7 @@
 import React, { createContext, useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -11,11 +13,12 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password) => {
     try {
       const response = await fetch(
-        `http://localhost:4444/users?username=${encodeURIComponent(username)}&pass=${encodeURIComponent(password)}`
+        `${API_URL}/users?username=${encodeURIComponent(
+          username
+        )}&pass=${encodeURIComponent(password)}`
       );
       const data = await response.json();
-      console.log({data})
-      
+
       if (data && data.length > 0) {
         const loggedUser = data[0];
         setUser(loggedUser);
