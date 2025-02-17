@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { fetchUser } from "./src/api/fetchUser";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -12,12 +13,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await fetch(
-        `${API_URL}/users?username=${encodeURIComponent(
-          username
-        )}&pass=${encodeURIComponent(password)}`
-      );
-      const data = await response.json();
+      const data = await fetchUser(username, password);
 
       if (data && data.length > 0) {
         const loggedUser = data[0];

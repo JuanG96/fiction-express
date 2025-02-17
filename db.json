@@ -69,5 +69,17 @@
     }
   ],
   "metrics": [
+    {
+      "id": "4c4e",
+      "bookId": "1",
+      "userId": "1",
+      "totalTime": 4600,
+      "averageTime": 1533.3333333333333,
+      "pageTimes": [
+        3439,
+        511,
+        650
+      ]
+    }
   ]
 }

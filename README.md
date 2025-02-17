@@ -36,13 +36,19 @@ cd fiction-express-web
 npm install
 ```
 
-### 3. Iniciar el json server en el puerto 4444
+### 3. Configurar variables de entorno
+
+```bash
+VITE_API_URL=http://localhost:4444
+```
+
+### 4. Iniciar el json server en el puerto 4444
 
 ```bash
 npx json-server --watch db.json --port 4444
 ```
 
-### 4. Ejecutar la aplicación en modo desarrollo
+### 5. Ejecutar la aplicación en modo desarrollo
 
 ```bash
 npm run dev

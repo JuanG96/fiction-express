@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { fetchBooks } from "./api/fetchBooks";
 import BookImage from "./assets/book.jpg";
 import BookModal from "./components/BookModal";
 import CustomText from "./components/CustomText";
@@ -10,10 +11,12 @@ const Library = () => {
   const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
   useEffect(() => {
-    fetch(`${API_URL}/books`)
-      .then((response) => response.json())
-      .then((data) => setBooks(data))
-      .catch((error) => console.error("Error fetching books:", error));
+    const loadBooks = async () => {
+      const data = await fetchBooks();
+      console.log({ data });
+      setBooks(data);
+    };
+    loadBooks();
   }, []);
 
   const handleBookClick = (book) => {
